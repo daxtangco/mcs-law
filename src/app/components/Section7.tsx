@@ -1,5 +1,5 @@
 import Image from "next/image";
-import placeholderImage from "/public/animeGirl.jpg"; // Update with the correct path
+import placeholderImage from "/public/images/animeGirl.jpg"; // Update with the correct path
 
 export default function Section7() {
   return (

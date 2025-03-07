@@ -19,10 +19,10 @@ export default function Section4() {
         ))}
 
         {/* Last 2 Columns - Images (from Public folder) */}
-        <Image src="/cat.jpg" alt="Handshake" width={600} height={400} className="rounded-lg" />
-        <Image src="/cat2.jpg" alt="Wow" width={600} height={400} className="rounded-lg" />
-        <Image src="/kangel.jpg" alt="Wow" width={600} height={400} className="rounded-lg" />
-        <Image src="/astolfo.jpg" alt="Wow" width={600} height={400} className="rounded-lg" />
+        <Image src="/images/cat.jpg" alt="Handshake" width={600} height={400} className="rounded-lg" />
+        <Image src="/images/cat2.jpg" alt="Wow" width={600} height={400} className="rounded-lg" />
+        <Image src="/images/kangel.jpg" alt="Wow" width={600} height={400} className="rounded-lg" />
+        <Image src="/images/astolfo.jpg" alt="Wow" width={600} height={400} className="rounded-lg" />
       </div>
     </section>
   );

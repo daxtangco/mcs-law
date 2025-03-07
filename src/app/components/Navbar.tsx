@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "/public/logo.png"; // Ensure the image is in the `public` folder
+import logo from "/public/images/logo.png"; // Ensure the image is in the `public` folder
 
 export default function Navbar() {
   const scrollToSection = (id: string) => {
