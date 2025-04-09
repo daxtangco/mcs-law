@@ -1,8 +1,13 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useAuth } from '@/contexts/AuthContext'; // Import Auth Context
+import Logo from '@/components/common/Logo';
+
 
 const AboutPage: NextPage = () => {
+  const { currentUser } = useAuth(); // Get current user state
+
   return (
     <>
       <Head>
@@ -19,7 +24,7 @@ const AboutPage: NextPage = () => {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
-                  <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                  <Logo width={160} height={70} className="h-12 w-auto" />
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -29,7 +34,7 @@ const AboutPage: NextPage = () => {
                 <Link href="/services" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   Services
                 </Link>
-                <Link href="/about" className="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <Link href="/about" className="border-amber-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   About Us
                 </Link>
                 <Link href="/contact" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -38,12 +43,22 @@ const AboutPage: NextPage = () => {
               </div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <Link href="/login" className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">
-                Login
-              </Link>
-              <Link href="/register" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Register
-              </Link>
+              {currentUser ? (
+                /* Show Dashboard button when user is logged in */
+                <Link href="/dashboard" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                  Dashboard
+                </Link>
+              ) : (
+                /* Show Login/Register buttons when user is not logged in */
+                <>
+                  <Link href="/login" className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                    Login
+                  </Link>
+                  <Link href="/register" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -82,7 +97,7 @@ const AboutPage: NextPage = () => {
               <div className="mt-12 lg:mt-0">
                 <div className="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                   <div className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none">
-                    <div className="h-64 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl"></div>
+                    <div className="h-64 bg-gradient-to-r from-amber-400 to-amber-600 rounded-xl"></div>
                   </div>
                 </div>
               </div>
@@ -117,25 +132,25 @@ const AboutPage: NextPage = () => {
                     <h3 className="text-lg font-medium text-gray-900">Our Values</h3>
                     <ul className="mt-2 text-base text-gray-500 space-y-2">
                       <li className="flex items-start">
-                        <svg className="flex-shrink-0 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg className="flex-shrink-0 h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span className="ml-2"><strong>Integrity:</strong> We uphold the highest ethical standards in all our dealings.</span>
                       </li>
                       <li className="flex items-start">
-                        <svg className="flex-shrink-0 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg className="flex-shrink-0 h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span className="ml-2"><strong>Innovation:</strong> We embrace technology and new approaches to deliver better legal services.</span>
                       </li>
                       <li className="flex items-start">
-                        <svg className="flex-shrink-0 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg className="flex-shrink-0 h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span className="ml-2"><strong>Accessibility:</strong> We make legal services more approachable and understandable.</span>
                       </li>
                       <li className="flex items-start">
-                        <svg className="flex-shrink-0 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg className="flex-shrink-0 h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span className="ml-2"><strong>Client-Focused:</strong> We prioritize our clients' needs and interests above all else.</span>
@@ -164,12 +179,12 @@ const AboutPage: NextPage = () => {
               {/* Team Member 1 */}
               <div className="space-y-4">
                 <div className="aspect-w-3 aspect-h-2">
-                  <div className="h-64 w-full bg-blue-100 rounded-lg object-cover"></div>
+                  <div className="h-64 w-full bg-amber-100 rounded-lg object-cover"></div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-lg leading-6 font-medium space-y-1">
                     <h3>Atty. Maria C. Santos</h3>
-                    <p className="text-blue-600">Managing Partner</p>
+                    <p className="text-amber-600">Managing Partner</p>
                   </div>
                   <div className="text-base">
                     <p className="text-gray-500">
@@ -182,12 +197,12 @@ const AboutPage: NextPage = () => {
               {/* Team Member 2 */}
               <div className="space-y-4">
                 <div className="aspect-w-3 aspect-h-2">
-                  <div className="h-64 w-full bg-blue-100 rounded-lg object-cover"></div>
+                  <div className="h-64 w-full bg-amber-100 rounded-lg object-cover"></div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-lg leading-6 font-medium space-y-1">
                     <h3>Atty. Juan P. Cruz</h3>
-                    <p className="text-blue-600">Senior Associate</p>
+                    <p className="text-amber-600">Senior Associate</p>
                   </div>
                   <div className="text-base">
                     <p className="text-gray-500">
@@ -200,12 +215,12 @@ const AboutPage: NextPage = () => {
               {/* Team Member 3 */}
               <div className="space-y-4">
                 <div className="aspect-w-3 aspect-h-2">
-                  <div className="h-64 w-full bg-blue-100 rounded-lg object-cover"></div>
+                  <div className="h-64 w-full bg-amber-100 rounded-lg object-cover"></div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-lg leading-6 font-medium space-y-1">
                     <h3>Atty. Sofia L. Reyes</h3>
-                    <p className="text-blue-600">Technology & IP Specialist</p>
+                    <p className="text-amber-600">Technology & IP Specialist</p>
                   </div>
                   <div className="text-base">
                     <p className="text-gray-500">
@@ -219,23 +234,23 @@ const AboutPage: NextPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-blue-700">
+        <div className="bg-amber-700">
           <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
               <span className="block">Ready to work with us?</span>
               <span className="block">Start a consultation today.</span>
             </h2>
-            <p className="mt-4 text-lg leading-6 text-blue-200">
+            <p className="mt-4 text-lg leading-6 text-amber-200">
               Let our experienced team help you navigate the legal landscape with confidence.
             </p>
             <div className="mt-8 flex justify-center">
               <div className="inline-flex rounded-md shadow">
-                <Link href="/consultation" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50">
+                <Link href="/consultation" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-white hover:bg-amber-50">
                   Get Legal Consultation
                 </Link>
               </div>
               <div className="ml-3 inline-flex">
-                <Link href="/contact" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900">
+                <Link href="/contact" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-800 hover:bg-amber-900">
                   Contact Us
                 </Link>
               </div>

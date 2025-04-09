@@ -39,6 +39,7 @@ const DocumentReviewForm = () => {
     defaultValues: {
       name: currentUser?.displayName || '',
       email: currentUser?.email || '',
+      documentType: undefined,
       // No default value for privacyConsent
     },
   });
@@ -223,7 +224,7 @@ const DocumentReviewForm = () => {
           {[1, 2, 3, 4, 5].map((step) => (
             <div key={step} className="flex flex-col items-center">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                currentStep >= step ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-400 border-gray-300'
+                currentStep >= step ? 'bg-amber-600 text-white border-amber-600' : 'bg-white text-gray-400 border-gray-300'
               }`}>
                 {step}
               </div>
@@ -242,7 +243,7 @@ const DocumentReviewForm = () => {
             <div className="h-1 w-full bg-gray-200 rounded"></div>
           </div>
           <div className="relative flex justify-between">
-            <div className={`h-1 bg-blue-600 rounded`} style={{ width: `${(currentStep - 1) * 25}%` }}></div>
+            <div className={`h-1 bg-amber-600 rounded`} style={{ width: `${(currentStep - 1) * 25}%` }}></div>
           </div>
         </div>
       </div>
@@ -266,7 +267,7 @@ const DocumentReviewForm = () => {
                 <input
                   type="checkbox"
                   {...register('privacyConsent')}
-                  className="rounded text-blue-600 focus:ring-blue-500 h-5 w-5"
+                  className="rounded text-amber-600 focus:ring-amber-500 h-5 w-5"
                 />
                 <span className="ml-2 text-gray-700">I have read and agree to the Data Privacy Policy.</span>
               </label>
@@ -281,7 +282,7 @@ const DocumentReviewForm = () => {
                 onClick={nextStep}
                 disabled={!privacyConsent}
                 className={`px-6 py-2 rounded-md ${
-                  privacyConsent ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  privacyConsent ? 'bg-amber-600 text-white hover:bg-amber-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
                 Continue to Document Review
@@ -290,8 +291,276 @@ const DocumentReviewForm = () => {
           </div>
         )}
         
-        {/* Steps 2, 3, and 4 remain unchanged */}
-        {/* ... */}
+        {/* Step 2: Personal Details */}
+        {currentStep === 2 && (
+          <div>
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  {...register('name')}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
+                />
+                {errors.name && (
+                  <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  {...register('email')}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
+                />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  {...register('phone')}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
+                  placeholder="+63 XXX XXX XXXX"
+                />
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="documentType" className="block text-sm font-medium text-gray-700">
+                  Document Type *
+                </label>
+                <select
+                  id="documentType"
+                  {...register('documentType')}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
+                >
+                  <option value="">Select Document Type</option>
+                  <option value="Business Agreement">Business Agreement</option>
+                  <option value="Lease">Lease</option>
+                  <option value="Employment Contract">Employment Contract</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.documentType && (
+                  <p className="mt-1 text-sm text-red-600">{errors.documentType.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="additionalDetails" className="block text-sm font-medium text-gray-700">
+                  Additional Details
+                </label>
+                <textarea
+                  id="additionalDetails"
+                  rows={4}
+                  {...register('additionalDetails')}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500"
+                  placeholder="Please provide any additional context or specific concerns about the document."
+                ></textarea>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-between">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={nextStep}
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
+              >
+                Next Step
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Document Upload */}
+        {currentStep === 3 && (
+          <div>
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Upload Document for Review *
+                </label>
+                <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                  <div className="space-y-1 text-center">
+                    <svg
+                      className="mx-auto h-12 w-12 text-gray-400"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 48 48"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <div className="flex text-sm text-gray-600">
+                      <label
+                        htmlFor="file-upload"
+                        className="relative cursor-pointer bg-white rounded-md font-medium text-amber-600 hover:text-amber-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-amber-500"
+                      >
+                        <span>Upload a file</span>
+                        <input
+                          id="file-upload"
+                          name="file-upload"
+                          type="file"
+                          className="sr-only"
+                          onChange={handleFileChange}
+                          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                        />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      PDF, DOC, DOCX, JPG, PNG up to 10MB
+                    </p>
+                  </div>
+                </div>
+                {file && (
+                  <div className="mt-4 flex items-center justify-between bg-amber-50 p-3 rounded-md">
+                    <div className="flex items-center">
+                      <svg className="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <span className="text-sm text-gray-700">{file.name}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setFile(null)}
+                      className="text-red-600 hover:text-red-800 text-sm"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-between">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={nextStep}
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
+                disabled={!file}
+              >
+                Next Step
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 4: Review and Submit */}
+        {currentStep === 4 && (
+          <div>
+            <div className="mb-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Review Your Information</h3>
+              
+              <div className="bg-gray-50 p-4 rounded-md border border-gray-200 mb-6">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                  <div>
+                    <p className="text-sm font-medium text-gray-500">Name</p>
+                    <p className="mt-1">{watch('name')}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500">Email</p>
+                    <p className="mt-1">{watch('email')}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500">Phone</p>
+                    <p className="mt-1">{watch('phone') || 'Not provided'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500">Document Type</p>
+                    <p className="mt-1">{watch('documentType')}</p>
+                  </div>
+                </div>
+                
+                {watch('additionalDetails') && (
+                  <div className="mt-4">
+                    <p className="text-sm font-medium text-gray-500">Additional Details</p>
+                    <p className="mt-1 text-sm whitespace-pre-line">{watch('additionalDetails')}</p>
+                  </div>
+                )}
+                
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-500">Document</p>
+                  {file ? (
+                    <p className="mt-1 flex items-center">
+                      <svg className="h-5 w-5 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      {file.name}
+                    </p>
+                  ) : (
+                    <p className="mt-1 text-red-600">No document uploaded</p>
+                  )}
+                </div>
+              </div>
+              
+              <div className="bg-yellow-50 p-4 rounded-md border border-yellow-200 mb-6">
+                <div className="flex">
+                  <svg className="h-5 w-5 text-yellow-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium text-yellow-800">Important Note</p>
+                    <p className="mt-1 text-sm text-yellow-700">
+                      By submitting this form, you agree to pay PHP 500.00 for the document review service. 
+                      Our legal experts will analyze your document and provide a detailed report within 48 hours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-between">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
+              >
+                Proceed to Payment
+              </button>
+            </div>
+          </div>
+        )}
         
         {/* Step 5: Confirmation */}
         {currentStep === 5 && submissionSuccess && (
@@ -311,7 +580,7 @@ const DocumentReviewForm = () => {
               <button
                 type="button"
                 onClick={() => window.location.href = '/dashboard'}
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
               >
                 Go to Dashboard
               </button>
@@ -356,7 +625,7 @@ const DocumentReviewForm = () => {
                   onClick={() => setSelectedPaymentMethod('card')}
                   className={`py-2 px-3 text-sm font-medium rounded-md text-center ${
                     selectedPaymentMethod === 'card'
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-amber-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -367,7 +636,7 @@ const DocumentReviewForm = () => {
                   onClick={() => setSelectedPaymentMethod('gcash')}
                   className={`py-2 px-3 text-sm font-medium rounded-md text-center ${
                     selectedPaymentMethod === 'gcash'
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-amber-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -378,7 +647,7 @@ const DocumentReviewForm = () => {
                   onClick={() => setSelectedPaymentMethod('grab_pay')}
                   className={`py-2 px-3 text-sm font-medium rounded-md text-center ${
                     selectedPaymentMethod === 'grab_pay'
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-amber-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -395,7 +664,7 @@ const DocumentReviewForm = () => {
                   <input
                     type="text"
                     placeholder="1234 5678 9012 3456"
-                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                   />
                 </div>
                 
@@ -405,7 +674,7 @@ const DocumentReviewForm = () => {
                     <input
                       type="text"
                       placeholder="MM/YY"
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                     />
                   </div>
                   <div>
@@ -413,7 +682,7 @@ const DocumentReviewForm = () => {
                     <input
                       type="text"
                       placeholder="123"
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                     />
                   </div>
                 </div>
@@ -425,7 +694,7 @@ const DocumentReviewForm = () => {
               <button
                 onClick={initiatePayment}
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-300"
+                className="w-full px-6 py-3 bg-amber-600 text-white rounded-md hover:bg-amber-700 disabled:bg-amber-300"
               >
                 {isSubmitting ? 'Processing...' : (
                   selectedPaymentMethod === 'card' ? 'Pay ₱500.00' : 

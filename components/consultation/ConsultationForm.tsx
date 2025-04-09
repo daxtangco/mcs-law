@@ -123,7 +123,7 @@ const ConsultationForm = () => {
           {[1, 2, 3, 4].map((step) => (
             <div key={step} className="flex flex-col items-center">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                currentStep >= step ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-400 border-gray-300'
+                currentStep >= step ? 'bg-amber-600 text-white border-amber-600' : 'bg-white text-gray-400 border-gray-300'
               }`}>
                 {step}
               </div>
@@ -141,7 +141,7 @@ const ConsultationForm = () => {
             <div className="h-1 w-full bg-gray-200 rounded"></div>
           </div>
           <div className="relative flex justify-between">
-            <div className={`h-1 bg-blue-600 rounded`} style={{ width: `${(currentStep - 1) * 33.33}%` }}></div>
+            <div className={`h-1 bg-amber-600 rounded`} style={{ width: `${(currentStep - 1) * 33.33}%` }}></div>
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@ const ConsultationForm = () => {
                 <input
                   type="checkbox"
                   {...register('privacyConsent')}
-                  className="rounded text-blue-600 focus:ring-blue-500 h-5 w-5"
+                  className="rounded text-amber-600 focus:ring-amber-500 h-5 w-5"
                 />
                 <span className="ml-2 text-gray-700">I have read and agree to the Data Privacy Policy.</span>
               </label>
@@ -180,7 +180,7 @@ const ConsultationForm = () => {
                 onClick={nextStep}
                 disabled={!privacyConsent}
                 className={`px-6 py-2 rounded-md ${
-                  privacyConsent ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  privacyConsent ? 'bg-amber-600 text-white hover:bg-amber-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
                 Continue to Consultation
@@ -199,7 +199,7 @@ const ConsultationForm = () => {
                   id="name"
                   type="text"
                   {...register('name')}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                 />
                 {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
               </div>
@@ -210,7 +210,7 @@ const ConsultationForm = () => {
                   id="email"
                   type="email"
                   {...register('email')}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
               </div>
@@ -221,7 +221,7 @@ const ConsultationForm = () => {
                   id="phone"
                   type="tel"
                   {...register('phone')}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                   placeholder="+63 XXX XXX XXXX"
                 />
                 {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
@@ -233,7 +233,7 @@ const ConsultationForm = () => {
                   id="companyName"
                   type="text"
                   {...register('companyName')}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                 />
               </div>
             </div>
@@ -249,7 +249,7 @@ const ConsultationForm = () => {
               <button
                 type="button"
                 onClick={nextStep}
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
               >
                 Next: Submit Legal Inquiry
               </button>
@@ -269,7 +269,7 @@ const ConsultationForm = () => {
                   id="inquiry"
                   rows={6}
                   {...register('inquiry')}
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-amber-500 focus:border-amber-500"
                   placeholder="Please describe your legal concern in detail..."
                 />
                 {errors.inquiry && <p className="mt-1 text-sm text-red-600">{errors.inquiry.message}</p>}
@@ -301,7 +301,7 @@ const ConsultationForm = () => {
                     <div className="flex text-sm text-gray-600">
                       <label
                         htmlFor="file-upload"
-                        className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                        className="relative cursor-pointer bg-white rounded-md font-medium text-amber-600 hover:text-amber-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-amber-500"
                       >
                         <span>Upload a file</span>
                         <input
@@ -346,7 +346,7 @@ const ConsultationForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-300"
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 disabled:bg-amber-300"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
               </button>
@@ -371,7 +371,7 @@ const ConsultationForm = () => {
               <button
                 type="button"
                 onClick={() => window.location.href = '/dashboard'}
-                className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-6 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
               >
                 Go to Dashboard
               </button>

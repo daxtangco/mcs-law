@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
+import Logo from '@/components/common/Logo';
+
 
 const Home: NextPage = () => {
   const { currentUser } = useAuth();
@@ -26,11 +28,11 @@ const Home: NextPage = () => {
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
                   {/* Replace with your actual logo */}
-                  <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                  <Logo width={160} height={70} className="h-12 w-auto" />
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link href="/" className="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <Link href="/" className="border-amber-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   Home
                 </Link>
                 <Link href="/services" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -46,7 +48,7 @@ const Home: NextPage = () => {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
               {currentUser ? (
-                <Link href="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <Link href="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                   Dashboard
                 </Link>
               ) : (
@@ -54,7 +56,7 @@ const Home: NextPage = () => {
                   <Link href="/login" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-3 py-2 text-sm font-medium">
                     Login
                   </Link>
-                  <Link href="/register" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  <Link href="/register" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                     Register
                   </Link>
                 </div>
@@ -63,7 +65,7 @@ const Home: NextPage = () => {
             <div className="-mr-2 flex items-center sm:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
                 aria-expanded="false"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -80,7 +82,7 @@ const Home: NextPage = () => {
         {isMenuOpen && (
           <div className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              <Link href="/" className="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+              <Link href="/" className="bg-amber-50 border-amber-500 text-amber-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                 Home
               </Link>
               <Link href="/services" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
@@ -144,19 +146,19 @@ const Home: NextPage = () => {
                 <div className="sm:text-center lg:text-left">
                   <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                     <span className="block xl:inline">Your Legal Partner for</span>{' '}
-                    <span className="block text-blue-600 xl:inline">Growth and Innovation</span>
+                    <span className="block text-amber-600 xl:inline">Growth and Innovation</span>
                   </h1>
                   <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                     At MCS LAW, we understand that the world is changing—while traditional businesses continue to thrive, the rise of digital enterprises is shaping the future. That's why we provide legal solutions that cater to both, ensuring our clients stay protected and ready for growth.
                   </p>
                   <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                     <div className="rounded-md shadow">
-                      <Link href="/consultation" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                      <Link href="/consultation" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 md:py-4 md:text-lg md:px-10">
                         Get Legal Consultation
                       </Link>
                     </div>
                     <div className="mt-3 sm:mt-0 sm:ml-3">
-                      <Link href="/document-review" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10">
+                      <Link href="/document-review" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-amber-100 hover:bg-amber-200 md:py-4 md:text-lg md:px-10">
                         Document Review
                       </Link>
                     </div>
@@ -166,7 +168,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-            <div className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full bg-gradient-to-r from-blue-400 to-blue-600"></div>
+            <div className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full bg-gradient-to-r from-amber-400 to-amber-600"></div>
           </div>
         </div>
 
@@ -174,7 +176,7 @@ const Home: NextPage = () => {
         <div className="bg-gray-50 py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">Our Services</h2>
+              <h2 className="text-base font-semibold text-amber-600 tracking-wide uppercase">Our Services</h2>
               <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
                 Comprehensive Legal Solutions
               </p>
@@ -189,7 +191,7 @@ const Home: NextPage = () => {
                 <div className="bg-white overflow-hidden shadow rounded-lg">
                   <div className="px-4 py-5 sm:p-6">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                      <div className="flex-shrink-0 bg-amber-500 rounded-md p-3">
                         <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                         </svg>
@@ -204,7 +206,7 @@ const Home: NextPage = () => {
                       </p>
                     </div>
                     <div className="mt-6">
-                      <Link href="/consultation" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                      <Link href="/consultation" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700">
                         Get Started
                       </Link>
                     </div>
@@ -215,7 +217,7 @@ const Home: NextPage = () => {
                 <div className="bg-white overflow-hidden shadow rounded-lg">
                   <div className="px-4 py-5 sm:p-6">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                      <div className="flex-shrink-0 bg-amber-500 rounded-md p-3">
                         <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
@@ -230,7 +232,7 @@ const Home: NextPage = () => {
                       </p>
                     </div>
                     <div className="mt-6">
-                      <Link href="/document-review" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                      <Link href="/document-review" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700">
                         Learn More
                       </Link>
                     </div>
@@ -241,7 +243,7 @@ const Home: NextPage = () => {
                 <div className="bg-white overflow-hidden shadow rounded-lg">
                   <div className="px-4 py-5 sm:p-6">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                      <div className="flex-shrink-0 bg-amber-500 rounded-md p-3">
                         <svg className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
@@ -256,7 +258,7 @@ const Home: NextPage = () => {
                       </p>
                     </div>
                     <div className="mt-6">
-                      <Link href="/services" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                      <Link href="/services" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700">
                         Explore Services
                       </Link>
                     </div>
@@ -271,7 +273,7 @@ const Home: NextPage = () => {
         <div className="bg-white py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">How It Works</h2>
+              <h2 className="text-base font-semibold text-amber-600 tracking-wide uppercase">How It Works</h2>
               <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
                 Simple Process, Powerful Results
               </p>
@@ -292,7 +294,7 @@ const Home: NextPage = () => {
 
               <div className="mt-10 max-w-lg mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:max-w-none">
                 <div className="relative">
-                  <div className="relative flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white text-xl font-bold mb-4 mx-auto">
+                  <div className="relative flex items-center justify-center h-12 w-12 rounded-md bg-amber-500 text-white text-xl font-bold mb-4 mx-auto">
                     1
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 text-center">Submit Your Inquiry</h3>
@@ -302,7 +304,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white text-xl font-bold mb-4 mx-auto">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-amber-500 text-white text-xl font-bold mb-4 mx-auto">
                     2
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 text-center">Receive a Quote</h3>
@@ -312,7 +314,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white text-xl font-bold mb-4 mx-auto">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-amber-500 text-white text-xl font-bold mb-4 mx-auto">
                     3
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 text-center">Video Consultation</h3>
@@ -322,7 +324,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white text-xl font-bold mb-4 mx-auto">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-amber-500 text-white text-xl font-bold mb-4 mx-auto">
                     4
                   </div>
                   <h3 className="text-lg font-medium text-gray-900 text-center">Receive Legal Solutions</h3>
@@ -336,23 +338,23 @@ const Home: NextPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-blue-700">
+        <div className="bg-amber-700">
           <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
               <span className="block">Ready to get started?</span>
               <span className="block">Get your legal matters sorted today.</span>
             </h2>
-            <p className="mt-4 text-lg leading-6 text-blue-200">
+            <p className="mt-4 text-lg leading-6 text-amber-200">
               Let our experienced team help you navigate the legal landscape with confidence.
             </p>
             <div className="mt-8 flex justify-center">
               <div className="inline-flex rounded-md shadow">
-                <Link href="/consultation" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50">
+                <Link href="/consultation" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-white hover:bg-amber-50">
                   Get Legal Consultation
                 </Link>
               </div>
               <div className="ml-3 inline-flex">
-                <Link href="/contact" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900">
+                <Link href="/contact" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-800 hover:bg-amber-900">
                   Contact Us
                 </Link>
               </div>

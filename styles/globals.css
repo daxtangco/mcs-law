@@ -23,7 +23,7 @@ input[type="url"],
 input[type="date"],
 textarea,
 select {
-  @apply rounded-md shadow-sm border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/50;
+  @apply rounded-md shadow-sm border-gray-300 focus:border-amber-500 focus:ring focus:ring-amber-500/50;
 }
 
 /* Button styles */
@@ -33,11 +33,11 @@ button,
 }
 
 .btn-primary {
-  @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+  @apply text-white bg-amber-600 hover:bg-amber-700 focus:ring-amber-500;
 }
 
 .btn-secondary {
-  @apply text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-blue-500;
+  @apply text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-amber-500;
 }
 
 .btn-success {

@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import LoadingScreen from '@/components/common/LoadingScreen';
+import Logo from '@/components/common/Logo';
 
 // Define type for document review data
 interface DocumentReviewData {
@@ -111,7 +112,7 @@ const DocumentReviewDetailPage: NextPage = () => {
                     <div className="text-center">
                         <h2 className="text-2xl font-bold text-gray-900 mb-2">Error</h2>
                         <p className="text-gray-600 mb-6">{error}</p>
-                        <Link href="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
+                        <Link href="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-600 hover:bg-amber-700">
                             Return to Dashboard
                         </Link>
                     </div>
@@ -145,9 +146,9 @@ const DocumentReviewDetailPage: NextPage = () => {
             case 'pending':
                 return 'bg-yellow-100 text-yellow-800';
             case 'pending-review':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-amber-100 text-amber-800';
             case 'in-progress':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-amber-100 text-amber-800';
             case 'completed':
                 return 'bg-green-100 text-green-800';
             case 'rejected':
@@ -196,7 +197,7 @@ const DocumentReviewDetailPage: NextPage = () => {
                             <div className="flex">
                                 <div className="flex-shrink-0 flex items-center">
                                     <Link href="/">
-                                        <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                                        <Logo width={160} height={70} className="h-12 w-auto" />
                                     </Link>
                                 </div>
                             </div>
@@ -285,7 +286,7 @@ const DocumentReviewDetailPage: NextPage = () => {
                                                                 </svg>
                                                                 <span className="ml-2 flex-1 truncate">{review.document.name}</span>
                                                             </div>
-                                                            <a href={review.document.url} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:text-blue-500">
+                                                            <a href={review.document.url} target="_blank" rel="noopener noreferrer" className="font-medium text-amber-600 hover:text-amber-500">
                                                                 Download
                                                             </a>
                                                         </div>
@@ -324,7 +325,7 @@ const DocumentReviewDetailPage: NextPage = () => {
                                                                                 <span className="ml-2 flex-1 w-0 truncate">{attachment.name}</span>
                                                                             </div>
                                                                             <div className="ml-4 flex-shrink-0">
-                                                                                <a href={attachment.url} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:text-blue-500">
+                                                                                <a href={attachment.url} target="_blank" rel="noopener noreferrer" className="font-medium text-amber-600 hover:text-amber-500">
                                                                                     Download
                                                                                 </a>
                                                                             </div>

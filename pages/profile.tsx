@@ -9,6 +9,8 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Logo from '@/components/common/Logo';
+
 
 // Form validation schema
 const profileSchema = z.object({
@@ -102,7 +104,7 @@ const ProfilePage: NextPage = () => {
   if (loading || !currentUser) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"></div>
       </div>
     );
   }
@@ -124,7 +126,7 @@ const ProfilePage: NextPage = () => {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <Link href="/">
-                    <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                    <Logo width={160} height={70} className="h-12 w-auto" />
                   </Link>
                 </div>
               </div>
@@ -176,7 +178,7 @@ const ProfilePage: NextPage = () => {
                             <input
                               type="text"
                               {...register('name')}
-                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-amber-500 focus:border-amber-500"
                             />
                             {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
                           </dd>
@@ -199,7 +201,7 @@ const ProfilePage: NextPage = () => {
                             <input
                               type="tel"
                               {...register('phone')}
-                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-amber-500 focus:border-amber-500"
                               placeholder="+63 XXX XXX XXXX"
                             />
                             {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
@@ -211,7 +213,7 @@ const ProfilePage: NextPage = () => {
                             <input
                               type="text"
                               {...register('address')}
-                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-amber-500 focus:border-amber-500"
                               placeholder="Your address"
                             />
                           </dd>
@@ -222,7 +224,7 @@ const ProfilePage: NextPage = () => {
                             <input
                               type="text"
                               {...register('company')}
-                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                              className="w-full rounded-md border-gray-300 shadow-sm focus:ring-amber-500 focus:border-amber-500"
                               placeholder="Your company (if applicable)"
                             />
                           </dd>
@@ -232,14 +234,14 @@ const ProfilePage: NextPage = () => {
                             <button
                               type="button"
                               onClick={() => router.push('/dashboard')}
-                              className="mr-3 inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                              className="mr-3 inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
                             >
                               Cancel
                             </button>
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-300"
+                              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:bg-amber-300"
                             >
                               {isSubmitting ? 'Saving...' : 'Save'}
                             </button>

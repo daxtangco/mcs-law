@@ -3,6 +3,9 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import Logo from '@/components/common/Logo';
+
 
 // Service card component
 interface ServiceCardProps {
@@ -15,14 +18,14 @@ interface ServiceCardProps {
   const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, learnMore = false }) => (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="p-6">
-        <div className="flex items-center justify-center h-14 w-14 rounded-md bg-blue-600 text-white mb-5 mx-auto">
+        <div className="flex items-center justify-center h-14 w-14 rounded-md bg-amber-600 text-white mb-5 mx-auto">
           {icon}
         </div>
         <h3 className="text-xl font-semibold text-center text-gray-900 mb-3">{title}</h3>
         <p className="text-gray-600 text-center mb-5">{description}</p>
         {learnMore && (
           <div className="text-center">
-            <Link href={`/services/${title.toLowerCase().replace(/\s+/g, '-')}`} className="text-blue-600 font-medium hover:text-blue-800">
+            <Link href={`/services/${title.toLowerCase().replace(/\s+/g, '-')}`} className="text-amber-600 font-medium hover:text-amber-800">
               Learn more →
             </Link>
           </div>
@@ -33,6 +36,7 @@ interface ServiceCardProps {
 
 const ServicesPage: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser } = useAuth();
 
   // Service data
   const services = [
@@ -150,14 +154,14 @@ const ServicesPage: NextPage = () => {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
-                  <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                  <Logo width={160} height={70} className="h-12 w-auto" />
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <Link href="/" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   Home
                 </Link>
-                <Link href="/services" className="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <Link href="/services" className="border-amber-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   Services
                 </Link>
                 <Link href="/about" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -169,17 +173,27 @@ const ServicesPage: NextPage = () => {
               </div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <Link href="/login" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-3 py-2 text-sm font-medium">
-                Login
-              </Link>
-              <Link href="/register" className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                Register
-              </Link>
+              {currentUser ? (
+                /* Show Dashboard button when user is logged in */
+                <Link href="/dashboard" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                  Dashboard
+                </Link>
+              ) : (
+                /* Show Login/Register buttons when user is not logged in */
+                <>
+                  <Link href="/login" className="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">
+                    Login
+                  </Link>
+                  <Link href="/register" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
             <div className="-mr-2 flex items-center sm:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
                 aria-expanded="false"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -199,7 +213,7 @@ const ServicesPage: NextPage = () => {
               <Link href="/" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                 Home
               </Link>
-              <Link href="/services" className="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+              <Link href="/services" className="bg-amber-50 border-amber-500 text-amber-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                 Services
               </Link>
               <Link href="/about" className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
@@ -210,32 +224,43 @@ const ServicesPage: NextPage = () => {
               </Link>
             </div>
             <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="flex items-center px-4">
-                <div className="flex-shrink-0">
-                  <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
-                    <span className="text-gray-600 font-medium">G</span>
+              {currentUser ? (
+                /* Show Dashboard link when user is logged in (mobile) */
+                <div className="mt-3 space-y-1">
+                  <Link href="/dashboard" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                    Dashboard
+                  </Link>
+                </div>
+              ) : (
+                /* Show Guest info and Login/Register when user is not logged in (mobile) */
+                <>
+                  <div className="flex items-center px-4">
+                    <div className="flex-shrink-0">
+                      <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+                        <span className="text-gray-600 font-medium">G</span>
+                      </div>
+                    </div>
+                    <div className="ml-3">
+                      <div className="text-base font-medium text-gray-800">Guest</div>
+                    </div>
                   </div>
-                </div>
-                <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">Guest</div>
-                </div>
-              </div>
-              <div className="mt-3 space-y-1">
-                <Link href="/login" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                  Login
-                </Link>
-                <Link href="/register" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                  Register
-                </Link>
-              </div>
+                  <div className="mt-3 space-y-1">
+                    <Link href="/login" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                      Login
+                    </Link>
+                    <Link href="/register" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                      Register
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         )}
       </header>
-
       <main>
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-800 text-white py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">Our Legal Services</h1>
             <p className="mt-6 text-xl max-w-3xl mx-auto">
@@ -248,7 +273,7 @@ const ServicesPage: NextPage = () => {
         <div className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">Online Services</h2>
+              <h2 className="text-base font-semibold text-amber-600 tracking-wide uppercase">Online Services</h2>
               <p className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-4xl">
                 Digital Legal Solutions
               </p>
@@ -261,13 +286,13 @@ const ServicesPage: NextPage = () => {
               {serviceProcess.map((service, index) => (
                 <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   <div className="p-6">
-                    <div className="flex items-center justify-center h-14 w-14 rounded-md bg-blue-600 text-white mb-5 mx-auto">
+                    <div className="flex items-center justify-center h-14 w-14 rounded-md bg-amber-600 text-white mb-5 mx-auto">
                       {service.icon}
                     </div>
                     <h3 className="text-xl font-semibold text-center text-gray-900 mb-3">{service.title}</h3>
                     <p className="text-gray-600 text-center mb-5">{service.description}</p>
                     <div className="text-center">
-                      <Link href={service.link} className="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                      <Link href={service.link} className="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                         Get Started
                       </Link>
                     </div>
@@ -282,7 +307,7 @@ const ServicesPage: NextPage = () => {
         <div className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-blue-600 tracking-wide uppercase">Practice Areas</h2>
+              <h2 className="text-base font-semibold text-amber-600 tracking-wide uppercase">Practice Areas</h2>
               <p className="mt-1 text-3xl font-extrabold text-gray-900 sm:text-4xl">
                 Comprehensive Legal Expertise
               </p>
@@ -313,7 +338,7 @@ const ServicesPage: NextPage = () => {
                 <div className="mt-8 space-y-4">
                   <div className="flex">
                     <div className="flex-shrink-0">
-                      <svg className="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -324,7 +349,7 @@ const ServicesPage: NextPage = () => {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0">
-                      <svg className="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -335,7 +360,7 @@ const ServicesPage: NextPage = () => {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0">
-                      <svg className="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -346,7 +371,7 @@ const ServicesPage: NextPage = () => {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0">
-                      <svg className="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -358,42 +383,42 @@ const ServicesPage: NextPage = () => {
                 </div>
               </div>
               <div className="mt-10 lg:mt-0">
-                <div className="bg-blue-100 rounded-lg p-10">
+                <div className="bg-amber-100 rounded-lg p-10">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Why Choose MCS LAW?</h3>
                   <ul className="space-y-4">
                     <li className="flex">
-                      <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                       <span className="text-gray-700">Experienced team of legal professionals</span>
                     </li>
                     <li className="flex">
-                      <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                       <span className="text-gray-700">Deep understanding of local and international laws</span>
                     </li>
                     <li className="flex">
-                      <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                       <span className="text-gray-700">Innovative legal solutions for modern challenges</span>
                     </li>
                     <li className="flex">
-                      <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                       <span className="text-gray-700">Commitment to client success and satisfaction</span>
                     </li>
                     <li className="flex">
-                      <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                       <span className="text-gray-700">Accessible services through modern technology</span>
                     </li>
                   </ul>
                   <div className="mt-8">
-                    <Link href="/consultation" className="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <Link href="/consultation" className="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                       Schedule a Consultation
                     </Link>
                   </div>
@@ -404,23 +429,23 @@ const ServicesPage: NextPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-blue-700">
+        <div className="bg-amber-700">
           <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
               <span className="block">Ready to get started?</span>
               <span className="block">Get your legal matters sorted today.</span>
             </h2>
-            <p className="mt-4 text-lg leading-6 text-blue-200">
+            <p className="mt-4 text-lg leading-6 text-amber-200">
               Let our experienced team help you navigate the legal landscape with confidence.
             </p>
             <div className="mt-8 flex justify-center">
               <div className="inline-flex rounded-md shadow">
-                <Link href="/consultation" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50">
+                <Link href="/consultation" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-white hover:bg-amber-50">
                   Get Legal Consultation
                 </Link>
               </div>
               <div className="ml-3 inline-flex">
-                <Link href="/contact" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900">
+                <Link href="/contact" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-amber-800 hover:bg-amber-900">
                   Contact Us
                 </Link>
               </div>
