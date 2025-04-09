@@ -74,7 +74,7 @@ const Dashboard = () => {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
       case 'in-progress':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-amber-100 text-amber-800';
       case 'resolved':
         return 'bg-green-100 text-green-800';
       case 'closed':
@@ -94,7 +94,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"></div>
       </div>
     );
   }
@@ -106,7 +106,7 @@ const Dashboard = () => {
         
         <div className="space-x-4">
           <Link href="/consultation">
-            <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
               New Consultation
             </button>
           </Link>
@@ -125,7 +125,7 @@ const Dashboard = () => {
             onClick={() => setActiveTab('consultations')}
             className={`${
               activeTab === 'consultations'
-                ? 'border-blue-500 text-blue-600'
+                ? 'border-amber-500 text-amber-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
           >
@@ -135,7 +135,7 @@ const Dashboard = () => {
             onClick={() => setActiveTab('document-reviews')}
             className={`${
               activeTab === 'document-reviews'
-                ? 'border-blue-500 text-blue-600'
+                ? 'border-amber-500 text-amber-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
           >
@@ -156,7 +156,7 @@ const Dashboard = () => {
               <p className="mt-1 text-sm text-gray-500">Get started by creating a new consultation request.</p>
               <div className="mt-6">
                 <Link href="/consultation">
-                  <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                     New Consultation
                   </button>
                 </Link>
@@ -189,7 +189,7 @@ const Dashboard = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         <StatusBadge status={consultation.status} />
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600 hover:text-blue-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-amber-600 hover:text-amber-900">
                         <Link href={`/consultation/${consultation.id}`}>
                           View Details
                         </Link>
@@ -248,7 +248,7 @@ const Dashboard = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         <StatusBadge status={review.status} />
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600 hover:text-blue-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-amber-600 hover:text-amber-900">
                         <Link href={`/document-review/${review.id}`}>
                           View Details
                         </Link>

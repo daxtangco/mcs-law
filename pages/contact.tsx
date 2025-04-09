@@ -7,6 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import axios from 'axios';
+import Logo from '@/components/common/Logo';
+
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -87,7 +89,7 @@ const ContactPage: NextPage = () => {
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
-                  <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                  <Logo width={160} height={70} className="h-12 w-auto" />
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -100,14 +102,14 @@ const ContactPage: NextPage = () => {
                 <Link href="/about" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   About Us
                 </Link>
-                <Link href="/contact" className="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                <Link href="/contact" className="border-amber-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                   Contact
                 </Link>
               </div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
               {currentUser ? (
-                <Link href="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <Link href="/dashboard" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                   Dashboard
                 </Link>
               ) : (
@@ -115,7 +117,7 @@ const ContactPage: NextPage = () => {
                   <Link href="/login" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-3 py-2 text-sm font-medium">
                     Login
                   </Link>
-                  <Link href="/register" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  <Link href="/register" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                     Register
                   </Link>
                 </div>
@@ -136,41 +138,40 @@ const ContactPage: NextPage = () => {
               <p className="mt-4 text-lg text-gray-500">
                 Have questions about our legal services? Need legal advice? We're here to help. Reach out to us using any of the methods below.
               </p>
-              
               <div className="mt-8 border-t border-gray-200 pt-8">
                 <dl className="space-y-6">
                   <div>
                     <dt className="text-base font-medium text-gray-900">
                       <div className="flex items-center">
-                        <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         Phone
                       </div>
                     </dt>
                     <dd className="mt-2 text-base text-gray-500">
-                      <a href="tel:+639123456789" className="hover:text-blue-600">+63 912 345 6789</a>
+                      <a href="tel:+639123456789" className="hover:text-amber-600">+63 912 345 6789</a>
                     </dd>
                   </div>
                   
                   <div>
                     <dt className="text-base font-medium text-gray-900">
                       <div className="flex items-center">
-                        <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                         Email
                       </div>
                     </dt>
                     <dd className="mt-2 text-base text-gray-500">
-                      <a href="mailto:info@mcslawofficeph.com" className="hover:text-blue-600">info@mcslawofficeph.com</a>
+                      <a href="mailto:info@mcslawofficeph.com" className="hover:text-amber-600">info@mcslawofficeph.com</a>
                     </dd>
                   </div>
                   
                   <div>
                     <dt className="text-base font-medium text-gray-900">
                       <div className="flex items-center">
-                        <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
@@ -186,7 +187,7 @@ const ContactPage: NextPage = () => {
                   <div>
                     <dt className="text-base font-medium text-gray-900">
                       <div className="flex items-center">
-                        <svg className="h-6 w-6 text-blue-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-6 w-6 text-amber-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         Office Hours
@@ -251,7 +252,7 @@ const ContactPage: NextPage = () => {
                         id="name"
                         type="text"
                         {...register('name')}
-                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-amber-500 focus:border-amber-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                       {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
                     </div>
@@ -266,7 +267,7 @@ const ContactPage: NextPage = () => {
                         id="email"
                         type="email"
                         {...register('email')}
-                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-amber-500 focus:border-amber-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                       {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
                     </div>
@@ -281,7 +282,7 @@ const ContactPage: NextPage = () => {
                         id="phone"
                         type="tel"
                         {...register('phone')}
-                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-amber-500 focus:border-amber-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                       {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
                     </div>
@@ -296,7 +297,7 @@ const ContactPage: NextPage = () => {
                         id="subject"
                         type="text"
                         {...register('subject')}
-                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-amber-500 focus:border-amber-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                       {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>}
                     </div>
@@ -311,7 +312,7 @@ const ContactPage: NextPage = () => {
                         id="message"
                         rows={5}
                         {...register('message')}
-                        className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-amber-500 focus:border-amber-500 block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                       {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
                     </div>
@@ -321,7 +322,7 @@ const ContactPage: NextPage = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-300"
+                      className="w-full inline-flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:bg-amber-300"
                     >
                       {isSubmitting ? (
                         <>

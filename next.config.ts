@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     NEXT_PUBLIC_FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     
-    // Paymongo Payment API (replaced Maya)
+    // Paymongo Payment API
     NEXT_PUBLIC_PAYMONGO_PUBLIC_KEY: process.env.NEXT_PUBLIC_PAYMONGO_PUBLIC_KEY,
     PAYMONGO_SECRET_KEY: process.env.PAYMONGO_SECRET_KEY,
     

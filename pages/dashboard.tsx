@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/contexts/AuthContext';
 import Dashboard from '@/components/dashboard/Dashboard';
+import Logo from '@/components/common/Logo';
 
 const DashboardPage: NextPage = () => {
   const { currentUser, loading, logout } = useAuth();
@@ -31,7 +32,7 @@ const DashboardPage: NextPage = () => {
   if (loading || !currentUser) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"></div>
       </div>
     );
   }
@@ -66,11 +67,11 @@ const DashboardPage: NextPage = () => {
             
             <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex items-center px-4">
-                <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                <Logo width={160} height={70} className="h-12 w-auto" />
               </div>
               <nav className="mt-5 px-2 space-y-1">
-                <Link href="/dashboard" className="bg-blue-50 text-blue-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-                  <svg className="text-blue-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <Link href="/dashboard" className="bg-amber-50 text-amber-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+                  <svg className="text-amber-500 mr-4 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                   Dashboard
@@ -137,12 +138,12 @@ const DashboardPage: NextPage = () => {
               <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div className="flex items-center flex-shrink-0 px-4">
                   <Link href="/">
-                    <span className="text-2xl font-bold text-blue-600">MCS LAW</span>
+                    <Logo width={160} height={70} className="h-12 w-auto" />
                   </Link>
                 </div>
                 <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
-                  <Link href="/dashboard" className="bg-blue-50 text-blue-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-                    <svg className="text-blue-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <Link href="/dashboard" className="bg-amber-50 text-amber-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <svg className="text-amber-500 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                     Dashboard
@@ -203,7 +204,7 @@ const DashboardPage: NextPage = () => {
           <div className="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
               onClick={() => setIsSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
